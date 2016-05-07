@@ -1,0 +1,15 @@
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\bin\Debug\Computers.exe.config
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\bin\Debug\Computers.exe
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\bin\Debug\Computers.pdb
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\obj\Debug\Computers.csprojResolveAssemblyReference.cache
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\obj\Debug\Computers.Form1.resources
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\obj\Debug\Computers.Properties.Resources.resources
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\obj\Debug\Computers.csproj.GenerateResource.Cache
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\obj\Debug\Computers.exe
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\obj\Debug\Computers.pdb
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\obj\Debug\Computers.AddComputer.resources
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\bin\Debug\Npgsql.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\bin\Debug\Mono.Security.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\Computers\Computers\obj\Debug\Computers.UpdateComputer.resources

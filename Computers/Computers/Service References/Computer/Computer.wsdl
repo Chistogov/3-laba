@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Computer" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfServiceLibrary1/Computer/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfServiceLibrary1/Computer/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SComputer_NewComputer_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewComputer" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_NewComputer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewComputerResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_Update_InputMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_Update_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_C_Name_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_C_Name" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_C_Name_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_C_NameResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_C_Name_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_C_Name" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_C_Name_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_C_NameResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_VideocardModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_VideocardModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_VideocardModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_VideocardModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_VideocardModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_VideocardModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_VideocardModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_VideocardModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_PowersupplyModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_PowersupplyModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_PowersupplyModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_PowersupplyModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_PowersupplyModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_PowersupplyModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_PowersupplyModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_PowersupplyModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_HousingModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_HousingModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_HousingModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_HousingModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_HousingModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_HousingModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_HousingModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_HousingModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_HarddriveModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_HarddriveModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_HarddriveModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_HarddriveModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_HarddriveModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_HarddriveModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_HarddriveModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_HarddriveModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_DiskstorageModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_DiskstorageModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_DiskstorageModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_DiskstorageModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_DiskstorageModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_DiskstorageModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_DiskstorageModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_DiskstorageModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_ProcessorModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_ProcessorModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_ProcessorModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_ProcessorModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_ProcessorModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_ProcessorModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_ProcessorModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_ProcessorModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_RamModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_RamModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_RamModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_RamModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_RamModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_RamModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_RamModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_RamModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_MotherboardModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_MotherboardModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_MotherboardModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_MotherboardModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_MotherboardModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_MotherboardModel" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_set_MotherboardModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_MotherboardModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:delete" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_toString_InputMessage">
+    <wsdl:part name="parameters" element="tns:toString" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_toString_OutputMessage">
+    <wsdl:part name="parameters" element="tns:toStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_InputMessage">
+    <wsdl:part name="parameters" element="tns:get" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getResponse" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_getByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:getByName" />
+  </wsdl:message>
+  <wsdl:message name="SComputer_getByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getByNameResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SComputer">
+    <wsdl:operation name="NewComputer">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/NewComputer" message="tns:SComputer_NewComputer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/NewComputerResponse" message="tns:SComputer_NewComputer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/Update" message="tns:SComputer_Update_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/UpdateResponse" message="tns:SComputer_Update_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/Save" message="tns:SComputer_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/SaveResponse" message="tns:SComputer_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_C_Name">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/get_C_Name" message="tns:SComputer_get_C_Name_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/get_C_NameResponse" message="tns:SComputer_get_C_Name_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_C_Name">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/set_C_Name" message="tns:SComputer_set_C_Name_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/set_C_NameResponse" message="tns:SComputer_set_C_Name_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_VideocardModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/get_VideocardModel" message="tns:SComputer_get_VideocardModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/get_VideocardModelResponse" message="tns:SComputer_get_VideocardModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_VideocardModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/set_VideocardModel" message="tns:SComputer_set_VideocardModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/set_VideocardModelResponse" message="tns:SComputer_set_VideocardModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_PowersupplyModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/get_PowersupplyModel" message="tns:SComputer_get_PowersupplyModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/get_PowersupplyModelResponse" message="tns:SComputer_get_PowersupplyModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_PowersupplyModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/set_PowersupplyModel" message="tns:SComputer_set_PowersupplyModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/set_PowersupplyModelResponse" message="tns:SComputer_set_PowersupplyModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_HousingModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/get_HousingModel" message="tns:SComputer_get_HousingModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/get_HousingModelResponse" message="tns:SComputer_get_HousingModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_HousingModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/set_HousingModel" message="tns:SComputer_set_HousingModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/set_HousingModelResponse" message="tns:SComputer_set_HousingModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_HarddriveModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/get_HarddriveModel" message="tns:SComputer_get_HarddriveModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/get_HarddriveModelResponse" message="tns:SComputer_get_HarddriveModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_HarddriveModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/set_HarddriveModel" message="tns:SComputer_set_HarddriveModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/set_HarddriveModelResponse" message="tns:SComputer_set_HarddriveModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_DiskstorageModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/get_DiskstorageModel" message="tns:SComputer_get_DiskstorageModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/get_DiskstorageModelResponse" message="tns:SComputer_get_DiskstorageModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_DiskstorageModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/set_DiskstorageModel" message="tns:SComputer_set_DiskstorageModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/set_DiskstorageModelResponse" message="tns:SComputer_set_DiskstorageModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_ProcessorModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/get_ProcessorModel" message="tns:SComputer_get_ProcessorModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/get_ProcessorModelResponse" message="tns:SComputer_get_ProcessorModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_ProcessorModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/set_ProcessorModel" message="tns:SComputer_set_ProcessorModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/set_ProcessorModelResponse" message="tns:SComputer_set_ProcessorModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_RamModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/get_RamModel" message="tns:SComputer_get_RamModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/get_RamModelResponse" message="tns:SComputer_get_RamModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_RamModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/set_RamModel" message="tns:SComputer_set_RamModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/set_RamModelResponse" message="tns:SComputer_set_RamModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_MotherboardModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/get_MotherboardModel" message="tns:SComputer_get_MotherboardModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/get_MotherboardModelResponse" message="tns:SComputer_get_MotherboardModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_MotherboardModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/set_MotherboardModel" message="tns:SComputer_set_MotherboardModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/set_MotherboardModelResponse" message="tns:SComputer_set_MotherboardModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/delete" message="tns:SComputer_delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/deleteResponse" message="tns:SComputer_delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="toString">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/toString" message="tns:SComputer_toString_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/toStringResponse" message="tns:SComputer_toString_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/get" message="tns:SComputer_get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/getResponse" message="tns:SComputer_get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/SComputer/getByName" message="tns:SComputer_getByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SComputer/getByNameResponse" message="tns:SComputer_getByName_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_SComputer" type="tns:SComputer">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewComputer">
+      <soap:operation soapAction="http://tempuri.org/SComputer/NewComputer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap:operation soapAction="http://tempuri.org/SComputer/Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/SComputer/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_C_Name">
+      <soap:operation soapAction="http://tempuri.org/SComputer/get_C_Name" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_C_Name">
+      <soap:operation soapAction="http://tempuri.org/SComputer/set_C_Name" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_VideocardModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/get_VideocardModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_VideocardModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/set_VideocardModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_PowersupplyModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/get_PowersupplyModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_PowersupplyModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/set_PowersupplyModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_HousingModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/get_HousingModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_HousingModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/set_HousingModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_HarddriveModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/get_HarddriveModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_HarddriveModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/set_HarddriveModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_DiskstorageModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/get_DiskstorageModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_DiskstorageModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/set_DiskstorageModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_ProcessorModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/get_ProcessorModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_ProcessorModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/set_ProcessorModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_RamModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/get_RamModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_RamModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/set_RamModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_MotherboardModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/get_MotherboardModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_MotherboardModel">
+      <soap:operation soapAction="http://tempuri.org/SComputer/set_MotherboardModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="http://tempuri.org/SComputer/delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="toString">
+      <soap:operation soapAction="http://tempuri.org/SComputer/toString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get">
+      <soap:operation soapAction="http://tempuri.org/SComputer/get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getByName">
+      <soap:operation soapAction="http://tempuri.org/SComputer/getByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Computer">
+    <wsdl:port name="BasicHttpBinding_SComputer" binding="tns:BasicHttpBinding_SComputer">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/WcfServiceLibrary1/Computer/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

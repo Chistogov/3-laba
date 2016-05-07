@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PowerSupply" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfServiceLibrary1/PowerSupply/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfServiceLibrary1/PowerSupply/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SPowerSupply_NewPowerSupply_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewPowerSupply" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_NewPowerSupply_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewPowerSupplyResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_Update_InputMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_Update_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:delete" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_toString_InputMessage">
+    <wsdl:part name="parameters" element="tns:toString" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_toString_OutputMessage">
+    <wsdl:part name="parameters" element="tns:toStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_get_InputMessage">
+    <wsdl:part name="parameters" element="tns:get" />
+  </wsdl:message>
+  <wsdl:message name="SPowerSupply_get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SPowerSupply">
+    <wsdl:operation name="NewPowerSupply">
+      <wsdl:input wsaw:Action="http://tempuri.org/SPowerSupply/NewPowerSupply" message="tns:SPowerSupply_NewPowerSupply_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SPowerSupply/NewPowerSupplyResponse" message="tns:SPowerSupply_NewPowerSupply_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/SPowerSupply/Save" message="tns:SPowerSupply_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SPowerSupply/SaveResponse" message="tns:SPowerSupply_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input wsaw:Action="http://tempuri.org/SPowerSupply/Update" message="tns:SPowerSupply_Update_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SPowerSupply/UpdateResponse" message="tns:SPowerSupply_Update_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/SPowerSupply/delete" message="tns:SPowerSupply_delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SPowerSupply/deleteResponse" message="tns:SPowerSupply_delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="toString">
+      <wsdl:input wsaw:Action="http://tempuri.org/SPowerSupply/toString" message="tns:SPowerSupply_toString_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SPowerSupply/toStringResponse" message="tns:SPowerSupply_toString_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get">
+      <wsdl:input wsaw:Action="http://tempuri.org/SPowerSupply/get" message="tns:SPowerSupply_get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SPowerSupply/getResponse" message="tns:SPowerSupply_get_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_SPowerSupply" type="tns:SPowerSupply">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewPowerSupply">
+      <soap:operation soapAction="http://tempuri.org/SPowerSupply/NewPowerSupply" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/SPowerSupply/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap:operation soapAction="http://tempuri.org/SPowerSupply/Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="http://tempuri.org/SPowerSupply/delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="toString">
+      <soap:operation soapAction="http://tempuri.org/SPowerSupply/toString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get">
+      <soap:operation soapAction="http://tempuri.org/SPowerSupply/get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PowerSupply">
+    <wsdl:port name="BasicHttpBinding_SPowerSupply" binding="tns:BasicHttpBinding_SPowerSupply">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/WcfServiceLibrary1/PowerSupply/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
