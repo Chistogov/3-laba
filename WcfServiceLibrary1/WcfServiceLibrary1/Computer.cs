@@ -3,6 +3,7 @@ using Npgsql;
 using System;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.Text.RegularExpressions;
 
 namespace WcfServiceLibrary1
 {
@@ -244,7 +245,7 @@ namespace WcfServiceLibrary1
         
         public string get()
         {
-            string[,] mas = new string[10, 1000];
+            string[,] mas = new string[9, 110000];
             NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
             NpgsqlCommand command = new NpgsqlCommand("SELECT computer.name, videocard.model, powersupply.model, housing.model, harddrive.model, diskstorage.model, processor.model, ram.model, motherboard.model  FROM public.computer, public.videocard, public.powersupply, public.housing, public.harddrive, public.diskstorage, public.processor, public.ram, public.motherboard  WHERE(computer.id_videocard = videocard.id) and(computer.id_powersupply = powersupply.id) and(computer.id_housing = housing.id) and(computer.id_harddrive = harddrive.id) and(computer.id_diskstorage = diskstorage.id) and(computer.id_processor = processor.id) and(computer.id_ram = ram.id) and(computer.id_motherboard = motherboard.id) and(computer.is_del = false);", conn);
             NpgsqlDataReader reader = null;
@@ -265,7 +266,7 @@ namespace WcfServiceLibrary1
                         for (int cell = 0; cell < i; cell++)
                         {
                             //Array.Resize<int>(ref mas, mas.Length + 2);
-                            mas[cell, row] = Convert.ToString(reader.GetValue(cell));
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " "); 
                         }
                         row++;
                     }
@@ -307,16 +308,16 @@ namespace WcfServiceLibrary1
                     {
                         for (int cell = 0; cell < i; cell++)
                         {
-                            mas[cell, row] = Convert.ToString(reader.GetValue(cell));
-                            Name = Convert.ToString(reader.GetValue(0));
-                            Videocard = Convert.ToString(reader.GetValue(1));
-                            Powersupply = Convert.ToString(reader.GetValue(2));
-                            Housing = Convert.ToString(reader.GetValue(3));
-                            Harddrive = Convert.ToString(reader.GetValue(4));
-                            Diskstorage = Convert.ToString(reader.GetValue(5));
-                            Processor = Convert.ToString(reader.GetValue(6));
-                            Ram = Convert.ToString(reader.GetValue(7));
-                            Motherboard = Convert.ToString(reader.GetValue(8));
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " "); 
+                            Name = Regex.Replace(Convert.ToString(reader.GetValue(0)), "[ ]+", " "); 
+                            Videocard = Regex.Replace(Convert.ToString(reader.GetValue(1)), "[ ]+", " "); 
+                            Powersupply = Regex.Replace(Convert.ToString(reader.GetValue(2)), "[ ]+", " "); 
+                            Housing = Regex.Replace(Convert.ToString(reader.GetValue(3)), "[ ]+", " "); 
+                            Harddrive = Regex.Replace(Convert.ToString(reader.GetValue(4)), "[ ]+", " "); 
+                            Diskstorage = Regex.Replace(Convert.ToString(reader.GetValue(5)), "[ ]+", " "); 
+                            Processor = Regex.Replace(Convert.ToString(reader.GetValue(6)), "[ ]+", " "); 
+                            Ram = Regex.Replace(Convert.ToString(reader.GetValue(7)), "[ ]+", " "); 
+                            Motherboard = Regex.Replace(Convert.ToString(reader.GetValue(8)), "[ ]+", " "); 
                         }
                         row++;
                     }

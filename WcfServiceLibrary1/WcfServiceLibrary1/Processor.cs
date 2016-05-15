@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.ServiceModel;
+using System.Text.RegularExpressions;
 
 namespace WcfServiceLibrary1
 {
@@ -15,13 +16,69 @@ namespace WcfServiceLibrary1
         string Clock_Freq = "";
         string Cache = "";
 
-        public void NewProcessor(string manufacturer, string model, string socket, string clock_Freq, string cache)
+        public string Processor_Manufacturer
         {
-            Manufacturer = manufacturer;
-            Model = model;
-            Socket = socket;
-            Clock_Freq = clock_Freq;
-            Cache = cache;
+            get
+            {
+                return Manufacturer;
+            }
+
+            set
+            {
+                Manufacturer = value;
+            }
+        }
+
+        public string Processor_Model
+        {
+            get
+            {
+                return Model;
+            }
+
+            set
+            {
+                Model = value;
+            }
+        }
+
+        public string Processor_Socket
+        {
+            get
+            {
+                return Socket;
+            }
+
+            set
+            {
+                Socket = value;
+            }
+        }
+
+        public string Processor_Clock_Freq
+        {
+            get
+            {
+                return Clock_Freq;
+            }
+
+            set
+            {
+                Clock_Freq = value;
+            }
+        }
+
+        public string Processor_Cache
+        {
+            get
+            {
+                return Cache;
+            }
+
+            set
+            {
+                Cache = value;
+            }
         }
 
         public void Save()
@@ -58,18 +115,18 @@ namespace WcfServiceLibrary1
             }
         }
 
-        public void Update(string manufacturer, string newmodel, string socket, string clock_Freq, string cache, string oldmodel)
+        public void Update()
         {
             NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
             NpgsqlCommand command = new NpgsqlCommand();
-            string SQL = "UPDATE public.processor SET manufacturer = @manufacturer, model = @model, socket = @socket, clock_freq = @clock_freq, cache = @cache WHERE model = @oldmodel;";
+            string SQL = "UPDATE public.processor SET manufacturer = @manufacturer, socket = @socket, clock_freq = @clock_freq, cache = @cache WHERE model = @model;";
             command.CommandText = SQL;
-            command.Parameters.AddWithValue("@manufacturer", manufacturer);
-            command.Parameters.AddWithValue("@model", newmodel);
-            command.Parameters.AddWithValue("@socket", socket);
-            command.Parameters.AddWithValue("@clock_freq", clock_Freq);
-            command.Parameters.AddWithValue("@cache", cache);
-            command.Parameters.AddWithValue("@oldmodel", oldmodel);
+            string id_manufacturer = GetManufacturerID(Manufacturer);
+            command.Parameters.AddWithValue("@manufacturer", id_manufacturer);
+            command.Parameters.AddWithValue("@socket", Socket);
+            command.Parameters.AddWithValue("@clock_freq", Clock_Freq);
+            command.Parameters.AddWithValue("@cache", Cache);
+            command.Parameters.AddWithValue("@model", Model);
             command.Connection = conn;
             NpgsqlDataReader reader = null;
             try
@@ -112,7 +169,57 @@ namespace WcfServiceLibrary1
                         for (int cell = 0; cell < i; cell++)
                         {
                             //Array.Resize<int>(ref mas, mas.Length + 2);
-                            mas[cell, row] = Convert.ToString(reader.GetValue(cell));
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " ");
+                        }
+                        row++;
+                    }
+                }
+                else throw new Exception("Таких записей не найдено!");
+                reader.Close();
+            }
+            catch (Exception m)
+            {
+                throw new Exception(m.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return JsonConvert.SerializeObject(mas);
+        }
+
+        public string getByName(string model)
+        {
+            string[,] mas = new string[10, 3];
+            NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
+            NpgsqlCommand command = new NpgsqlCommand();
+            string SQL = "SELECT manufacturer.name, processor.model, processor.socket, processor.clock_freq, processor.cache FROM public.processor, public.manufacturer WHERE (processor.is_del=false) and (processor.manufacturer = manufacturer.id) and (model = @model);";
+            command.CommandText = SQL;
+            command.Parameters.AddWithValue("@model", model);
+            command.Connection = conn;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                conn.Open();
+                reader = command.ExecuteReader();
+                int i = reader.VisibleFieldCount;
+
+                if (i > 0 && reader.HasRows)
+                {
+                    for (int l = 0; l < i; l++)
+                        mas[l, 0] = reader.GetName(l);
+
+                    int row = 1;
+                    while (reader.Read())
+                    {
+                        for (int cell = 0; cell < i; cell++)
+                        {
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " ");
+                            Manufacturer = Regex.Replace(Convert.ToString(reader.GetValue(0)), "[ ]+", " ");
+                            Model = Regex.Replace(Convert.ToString(reader.GetValue(1)), "[ ]+", " ");
+                            Socket = Regex.Replace(Convert.ToString(reader.GetValue(2)), "[ ]+", " ");
+                            Clock_Freq = Regex.Replace(Convert.ToString(reader.GetValue(3)), "[ ]+", " ");
+                            Cache = Regex.Replace(Convert.ToString(reader.GetValue(4)), "[ ]+", " "); ;
                         }
                         row++;
                     }

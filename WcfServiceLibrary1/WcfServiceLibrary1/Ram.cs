@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.ServiceModel;
+using System.Text.RegularExpressions;
 
 namespace WcfServiceLibrary1
 {
@@ -15,13 +16,69 @@ namespace WcfServiceLibrary1
         string Clock_Freq = "";
         string Memory_type = "";
 
-        public void NewRam(string manufacturer, string model, string memory, string clock_Freq, string memory_type)
+        public string Ram_Manufacturer
         {
-            Manufacturer = manufacturer;
-            Model = model;
-            Memory = memory;
-            Clock_Freq = clock_Freq;
-            Memory_type = memory_type;
+            get
+            {
+                return Manufacturer;
+            }
+
+            set
+            {
+                Manufacturer = value;
+            }
+        }
+
+        public string Ram_Model
+        {
+            get
+            {
+                return Model;
+            }
+
+            set
+            {
+                Model = value;
+            }
+        }
+
+        public string Ram_Memory
+        {
+            get
+            {
+                return Memory;
+            }
+
+            set
+            {
+                Memory = value;
+            }
+        }
+
+        public string Ram_Clock_Freq
+        {
+            get
+            {
+                return Clock_Freq;
+            }
+
+            set
+            {
+                Clock_Freq = value;
+            }
+        }
+
+        public string Ram_Memory_type
+        {
+            get
+            {
+                return Memory_type;
+            }
+
+            set
+            {
+                Memory_type = value;
+            }
         }
 
         public void Save()
@@ -58,18 +115,18 @@ namespace WcfServiceLibrary1
             }
         }
 
-        public void Update(string manufacturer, string newmodel, string memory, string clock_Freq, string memory_type, string oldmodel)
+        public void Update()
         {
             NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
             NpgsqlCommand command = new NpgsqlCommand();
-            string SQL = "UPDATE public.ram SET manufacturer = @manufacturer, model = @model, memory = @memory, clock_freq = @clock_freq, memory_type = @memory_type WHERE model = @oldmodel; ";
+            string SQL = "UPDATE public.ram SET manufacturer = @manufacturer, memory = @memory, clock_freq = @clock_freq, memory_type = @memory_type WHERE model = @model; ";
             command.CommandText = SQL;
-            command.Parameters.AddWithValue("@manufacturer", manufacturer);
-            command.Parameters.AddWithValue("@model", newmodel);
-            command.Parameters.AddWithValue("@memory", memory);
-            command.Parameters.AddWithValue("@clock_freq", clock_Freq);
-            command.Parameters.AddWithValue("@memory_type", memory_type);
-            command.Parameters.AddWithValue("@oldmodel", oldmodel);
+            string id_manufacturer = GetManufacturerID(Manufacturer);
+            command.Parameters.AddWithValue("@manufacturer", id_manufacturer);
+            command.Parameters.AddWithValue("@memory", Memory);
+            command.Parameters.AddWithValue("@clock_freq", Clock_Freq);
+            command.Parameters.AddWithValue("@memory_type", Memory_type);
+            command.Parameters.AddWithValue("@model", Model);
             command.Connection = conn;
             NpgsqlDataReader reader = null;
             try
@@ -112,7 +169,57 @@ namespace WcfServiceLibrary1
                         for (int cell = 0; cell < i; cell++)
                         {
                             //Array.Resize<int>(ref mas, mas.Length + 2);
-                            mas[cell, row] = Convert.ToString(reader.GetValue(cell));
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " ");
+                        }
+                        row++;
+                    }
+                }
+                else throw new Exception("Таких записей не найдено!");
+                reader.Close();
+            }
+            catch (Exception m)
+            {
+                throw new Exception(m.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return JsonConvert.SerializeObject(mas);
+        }
+
+        public string getByName(string model)
+        {
+            string[,] mas = new string[10, 3];
+            NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
+            NpgsqlCommand command = new NpgsqlCommand();
+            string SQL = "SELECT manufacturer.name, ram.model, ram.memory, ram.clock_freq, ram.memory_type FROM public.ram, public.manufacturer WHERE (ram.is_del=false) and (ram.manufacturer = manufacturer.id) and (model = @model);";
+            command.CommandText = SQL;
+            command.Parameters.AddWithValue("@model", model);
+            command.Connection = conn;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                conn.Open();
+                reader = command.ExecuteReader();
+                int i = reader.VisibleFieldCount;
+
+                if (i > 0 && reader.HasRows)
+                {
+                    for (int l = 0; l < i; l++)
+                        mas[l, 0] = reader.GetName(l);
+
+                    int row = 1;
+                    while (reader.Read())
+                    {
+                        for (int cell = 0; cell < i; cell++)
+                        {
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " ");
+                            Manufacturer = Regex.Replace(Convert.ToString(reader.GetValue(0)), "[ ]+", " ");
+                            Model = Regex.Replace(Convert.ToString(reader.GetValue(1)), "[ ]+", " ");
+                            Memory = Regex.Replace(Convert.ToString(reader.GetValue(2)), "[ ]+", " ");
+                            Clock_Freq = Regex.Replace(Convert.ToString(reader.GetValue(3)), "[ ]+", " ");
+                            Memory_type = Regex.Replace(Convert.ToString(reader.GetValue(4)), "[ ]+", " ");
                         }
                         row++;
                     }

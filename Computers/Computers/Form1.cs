@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Npgsql;
+using Microsoft.Office.Interop.Excel;
+using System.Text.RegularExpressions;
 
 namespace Computers
 {
@@ -407,11 +409,12 @@ namespace Computers
             }
         }
 
-        private void loadComputer()
+        public void loadComputer()
         {
             dataGridView1.Rows.Clear();
             dataGridView1.Columns.Clear();
             var myBinding = new BasicHttpBinding();
+            myBinding.MaxReceivedMessageSize = 70000000;
             var myEndpoint = new EndpointAddress("http://localhost:8733/Design_Time_Addresses/WcfServiceLibrary1/Computer/");
             var myChannelFactory = new ChannelFactory<Computer.SComputer>(myBinding, myEndpoint);
 
@@ -452,28 +455,47 @@ namespace Computers
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            loadManufacturer();
-            loadProcessor();
-            loadMotherboard();
-            loadPowerSupply();
-            loadRam();
-            loadVideocard();
-            loadHarddrive();
-            loadDiskstorage();
-            loadHousing();
-            loadComputer();
+
+            try
+            {
+                loadManufacturer();
+                loadProcessor();
+                loadMotherboard();
+                loadPowerSupply();
+                loadRam();
+                loadVideocard();
+                loadHarddrive();
+                loadDiskstorage();
+                loadHousing();
+                loadComputer();
+            }
+            catch
+            {
+                MessageBox.Show("Нет отвера от сервера!");
+                return;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddComputer MyForm = new AddComputer();
+            AddComputer MyForm = new AddComputer(this);
             MyForm.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int row = dataGridView1.CurrentCell.RowIndex;
-            string t = dataGridView1[0, row].Value.ToString();
+            int row = 0;
+            string t = "";
+            try
+            {
+                row = dataGridView1.CurrentCell.RowIndex;
+                t = dataGridView1[0, row].Value.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Таблица имеет неверный формат!");
+                return;
+            }
             DialogResult result = new DialogResult();
             result = MessageBox.Show(dataGridView1[0, row].Value.ToString() + "\nУдалить запись?", "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
@@ -498,6 +520,8 @@ namespace Computers
                     {
                         ((ICommunicationObject)client).Abort();
                     }
+                    MessageBox.Show("Нет отвера от сервера!");
+                    return;
                 }
                 loadComputer();
                 MessageBox.Show("Запись успешно удалена!");
@@ -506,16 +530,32 @@ namespace Computers
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int row = dataGridView1.CurrentCell.RowIndex;
-            string t = dataGridView1[0, row].Value.ToString();
-            UpdateComputer MyForm = new UpdateComputer(t);
-            MyForm.Show();
+            try
+            {
+                int row = dataGridView1.CurrentCell.RowIndex;
+                string t = dataGridView1[0, row].Value.ToString();
+                UpdateComputer MyForm = new UpdateComputer(t, this);
+                MyForm.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Таблица имеет неверный формат!");
+                return;
+            }
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            loadComputer();
-        }
+            try
+            {
+                loadComputer();
+            }
+            catch
+            {
+                MessageBox.Show("Нет отвера от сервера!");
+                return;
+            }
+        }        
     }
 }

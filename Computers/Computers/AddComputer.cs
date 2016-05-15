@@ -15,9 +15,11 @@ namespace Computers
 {
     public partial class AddComputer : Form
     {
-        public AddComputer()
+        private Form1 refForm;
+        public AddComputer(Form1 refForm)
         {
             InitializeComponent();
+            this.refForm = refForm;
         }        
 
         private void loadProcessor()
@@ -255,14 +257,23 @@ namespace Computers
 
         private void AddComputer_Load(object sender, EventArgs e)
         {
-            loadProcessor();
-            loadMotherboard();
-            loadPowerSupply();
-            loadRam();
-            loadVideocard();
-            loadHarddrive();
-            loadDiskstorage();
-            loadHousing();
+            try
+            {
+                loadProcessor();
+                loadMotherboard();
+                loadPowerSupply();
+                loadRam();
+                loadVideocard();
+                loadHarddrive();
+                loadDiskstorage();
+                loadHousing();
+            }
+            catch
+            {
+                MessageBox.Show("Нет отвера от сервера!");
+                return;
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -296,9 +307,25 @@ namespace Computers
                 {
                     ((ICommunicationObject)client).Abort();
                 }
+                MessageBox.Show("Нет отвера от сервера!");
+                return;
             }
 
             MessageBox.Show(Regex.Replace(s, "[ ]+", " ") + "\n Успешно добавлено");
+            if (refForm != null)
+            {
+                try
+                {
+                    refForm.loadComputer();
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Нет отвера от сервера!");
+                    return;
+                }
+            }
+
         }
     }
 }

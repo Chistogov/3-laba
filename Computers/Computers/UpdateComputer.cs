@@ -15,24 +15,34 @@ namespace Computers
 {
     public partial class UpdateComputer : Form
     {
-        public UpdateComputer(string name)
+        private Form1 refForm;
+        public UpdateComputer(string name, Form1 refForm)
         {
             InitializeComponent();
             Name = name;
+            this.refForm = refForm;
         }
         string Name = "";
 
         private void UpdateComputer_Load(object sender, EventArgs e)
         {
-            loadProcessor();
-            loadMotherboard();
-            loadPowerSupply();
-            loadRam();
-            loadVideocard();
-            loadHarddrive();
-            loadDiskstorage();
-            loadHousing();
-            showOldConfig();
+            try
+            {
+                loadProcessor();
+                loadMotherboard();
+                loadPowerSupply();
+                loadRam();
+                loadVideocard();
+                loadHarddrive();
+                loadDiskstorage();
+                loadHousing();
+                showOldConfig();
+            }
+            catch
+            {
+                MessageBox.Show("Нет отвера от сервера!");
+                return;
+            }
         }
 
         private void loadProcessor()
@@ -297,7 +307,7 @@ namespace Computers
                 if (client != null)
                 {
                     ((ICommunicationObject)client).Abort();
-                }
+                }               
             }
 
             //string[,] array = JsonConvert.DeserializeObject<string[,]>(s);
@@ -345,9 +355,24 @@ namespace Computers
                 {
                     ((ICommunicationObject)client).Abort();
                 }
+                MessageBox.Show("Нет отвера от сервера!");
+                return;
             }
 
             MessageBox.Show(Regex.Replace(s, "[ ]+", " ") + "\n Успешно Обновлена");
+            if (refForm != null)
+            {
+                try
+                {
+                    refForm.loadComputer();
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Нет отвера от сервера!");
+                    return;
+                }
+            }
         }
     }
 }

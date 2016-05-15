@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.ServiceModel;
+using System.Text.RegularExpressions;
 
 namespace WcfServiceLibrary1
 {
@@ -16,14 +17,82 @@ namespace WcfServiceLibrary1
         string Memory_type = "";
         string Bios = "";
 
-        public void NewMotherboard(string manufacturer, string model, string socket, string max_clock_Freq, string memory_type, string bios)
+        public string Motherboard_Manufacturer
         {
-            Manufacturer = manufacturer;
-            Model = model;
-            Socket = socket;
-            Max_clock_freq = max_clock_Freq;
-            Memory_type = memory_type;
-            Bios = bios;
+            get
+            {
+                return Manufacturer;
+            }
+
+            set
+            {
+                Manufacturer = value;
+            }
+        }
+
+        public string Motherboard_Model
+        {
+            get
+            {
+                return Model;
+            }
+
+            set
+            {
+                Model = value;
+            }
+        }
+
+        public string Motherboard_Socket
+        {
+            get
+            {
+                return Socket;
+            }
+
+            set
+            {
+                Socket = value;
+            }
+        }
+
+        public string Motherboard_Max_clock_freq
+        {
+            get
+            {
+                return Max_clock_freq;
+            }
+
+            set
+            {
+                Max_clock_freq = value;
+            }
+        }
+
+        public string Motherboard_Memory_type
+        {
+            get
+            {
+                return Memory_type;
+            }
+
+            set
+            {
+                Memory_type = value;
+            }
+        }
+
+        public string Motherboard_Bios
+        {
+            get
+            {
+                return Bios;
+            }
+
+            set
+            {
+                Bios = value;
+            }
         }
 
         public void Save()
@@ -61,19 +130,19 @@ namespace WcfServiceLibrary1
             }
         }
 
-        public void Update(string manufacturer, string newmodel, string socket, string max_clock_freq, string memory_type, string bios, string oldmodel)
+        public void Update()
         {
             NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
             NpgsqlCommand command = new NpgsqlCommand();
-            string SQL = "UPDATE public.motherboard SET manufacturer = @manufacturer, model = @model, socket = @socket, max_clock_freq = @max_clock_freq, memory_type = @memory_type, bios = @bios WHERE model = @oldmodel;";
+            string SQL = "UPDATE public.motherboard SET manufacturer = @manufacturer, socket = @socket, max_clock_freq = @max_clock_freq, memory_type = @memory_type, bios = @bios WHERE model = @model;";
             command.CommandText = SQL;
-            command.Parameters.AddWithValue("@manufacturer", manufacturer);
-            command.Parameters.AddWithValue("@model", newmodel);
-            command.Parameters.AddWithValue("@socket", socket);
-            command.Parameters.AddWithValue("@max_clock_freq", max_clock_freq);
-            command.Parameters.AddWithValue("@memory_type", memory_type);
-            command.Parameters.AddWithValue("@bios", bios);
-            command.Parameters.AddWithValue("@oldmodel", oldmodel);
+            string id_manufacturer = GetManufacturerID(Manufacturer);
+            command.Parameters.AddWithValue("@manufacturer", id_manufacturer);
+            command.Parameters.AddWithValue("@socket", Socket);
+            command.Parameters.AddWithValue("@max_clock_freq", Max_clock_freq);
+            command.Parameters.AddWithValue("@memory_type", Memory_type);
+            command.Parameters.AddWithValue("@bios", Bios);
+            command.Parameters.AddWithValue("@model", Model);
             command.Connection = conn;
             NpgsqlDataReader reader = null;
             try
@@ -116,7 +185,58 @@ namespace WcfServiceLibrary1
                         for (int cell = 0; cell < i; cell++)
                         {
                             //Array.Resize<int>(ref mas, mas.Length + 2);
-                            mas[cell, row] = Convert.ToString(reader.GetValue(cell));
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " ");
+                        }
+                        row++;
+                    }
+                }
+                else throw new Exception("Таких записей не найдено!");
+                reader.Close();
+            }
+            catch (Exception m)
+            {
+                throw new Exception(m.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return JsonConvert.SerializeObject(mas);
+        }
+
+        public string getByName(string model)
+        {
+            string[,] mas = new string[10, 3];
+            NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
+            NpgsqlCommand command = new NpgsqlCommand();
+            string SQL = "SELECT manufacturer.name, motherboard.model, motherboard.socket, motherboard.max_clock_freq, motherboard.memory_type, motherboard.bios FROM public.motherboard, public.manufacturer WHERE (motherboard.is_del=false) and (motherboard.manufacturer = manufacturer.id) and (model = @model);";
+            command.CommandText = SQL;
+            command.Parameters.AddWithValue("@model", model);
+            command.Connection = conn;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                conn.Open();
+                reader = command.ExecuteReader();
+                int i = reader.VisibleFieldCount;
+
+                if (i > 0 && reader.HasRows)
+                {
+                    for (int l = 0; l < i; l++)
+                        mas[l, 0] = reader.GetName(l);
+
+                    int row = 1;
+                    while (reader.Read())
+                    {
+                        for (int cell = 0; cell < i; cell++)
+                        {
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " ");
+                            Manufacturer = Regex.Replace(Convert.ToString(reader.GetValue(0)), "[ ]+", " ");
+                            Model = Regex.Replace(Convert.ToString(reader.GetValue(1)), "[ ]+", " ");
+                            Socket = Regex.Replace(Convert.ToString(reader.GetValue(2)), "[ ]+", " ");
+                            Max_clock_freq = Regex.Replace(Convert.ToString(reader.GetValue(3)), "[ ]+", " ");
+                            Memory_type = Regex.Replace(Convert.ToString(reader.GetValue(4)), "[ ]+", " ");
+                            Bios = Regex.Replace(Convert.ToString(reader.GetValue(5)), "[ ]+", " ");
                         }
                         row++;
                     }

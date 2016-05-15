@@ -8,18 +8,32 @@ using System.Text;
 namespace WcfServiceLibrary1
 {
     // ПРИМЕЧАНИЕ. Команду "Переименовать" в меню "Рефакторинг" можно использовать для одновременного изменения имени интерфейса "IService1" в коде и файле конфигурации.
+    //++
     [ServiceContract]
     public interface SManufacturer
-    {  
+    {
 
-        [OperationContract]
-        void NewManufacturer(string name, string country);
+        string Manufacturer_Name
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Manufacturer_Country
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
         [OperationContract]
         void Save();
 
         [OperationContract]
-        void Update(string newname, string country, string oldname);
+        void Update();
 
         [OperationContract]
         void delete(string name);
@@ -29,20 +43,59 @@ namespace WcfServiceLibrary1
 
         [OperationContract]
         string get();
-    }
 
+        [OperationContract]
+        string getByName(string name);
+    }
+    //++
     [ServiceContract]
     public interface SVideocard
     {
+        string Videocard_Manufacturer
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
-        [OperationContract]
-        void NewVideocard(string manufacturer, string model, string memory, string clock_Freq, string memory_type);
+        string Videocard_Model
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Videocard_Memory
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }        
+
+        string Videocard_Clock_Freq
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Videocard_Memory_type
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
         [OperationContract]
         void Save();
 
         [OperationContract]
-        void Update(string manufacturer, string newmodel, string memory, string clock_Freq, string memory_type, string oldmodel);
+        void Update();
 
         [OperationContract]
         void delete(string model);
@@ -52,20 +105,43 @@ namespace WcfServiceLibrary1
 
         [OperationContract]
         string get();
-    }
 
+        [OperationContract]
+        string getByName(string model);
+    }
+    //++
     [ServiceContract]
     public interface SPowerSupply
     {
+        string PowerSupply_Manufacturer
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
-        [OperationContract]
-        void NewPowerSupply(string manufacturer, string model, string power);
+        string PowerSupply_Model
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string PowerSupply_Power
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
         [OperationContract]
         void Save();
 
         [OperationContract]
-        void Update(string manufacturer, string newmodel, string power, string oldmodel);
+        void Update();
 
         [OperationContract]
         void delete(string model);
@@ -75,20 +151,44 @@ namespace WcfServiceLibrary1
 
         [OperationContract]
         string get();
-    }
 
+        [OperationContract]
+        string getByName(string model);
+    }
+    //++
     [ServiceContract]
     public interface SHousing
     {
 
-        [OperationContract]
-        void NewHousing(string manufacturer, string model, string color);
+        string Housing_Manufacturer
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Housing_Model
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Housing_Color
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
         [OperationContract]
         void Save();
 
         [OperationContract]
-        void Update(string manufacturer, string newmodel, string color, string oldmodel);
+        void Update();
 
         [OperationContract]
         void delete(string model);
@@ -98,20 +198,52 @@ namespace WcfServiceLibrary1
 
         [OperationContract]
         string get();
-    }
 
+        [OperationContract]
+        string getByName(string model);
+    }
+    //++
     [ServiceContract]
     public interface SHarddrive
     {
 
-        [OperationContract]
-        void NewHarddrive(string manufacturer, string model, string interfce, string capacity);
+        string Harddrive_Manufacturer
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Harddrive_Model
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Harddrive_Interface
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Harddrive_Capacity
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
         [OperationContract]
         void Save();
 
         [OperationContract]
-        void Update(string manufacturer, string newmodel, string newinterface, string capacity, string oldmodel);
+        void Update();
 
         [OperationContract]
         void delete(string model);
@@ -121,20 +253,44 @@ namespace WcfServiceLibrary1
 
         [OperationContract]
         string get();
-    }
 
+        [OperationContract]
+        string getByName(string model);
+    }
+    //++
     [ServiceContract]
     public interface SDiskstorage
     {
 
-        [OperationContract]
-        void NewDiskstorage(string manufacturer, string model, string type);
+        string Diskstorage_Manufacturer
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Diskstorage_Model
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Diskstorage_Type
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
         [OperationContract]
         void Save();
 
         [OperationContract]
-        void Update(string manufacturer, string newmodel, string type, string oldmodel);
+        void Update();
 
         [OperationContract]
         void delete(string model);
@@ -144,20 +300,59 @@ namespace WcfServiceLibrary1
 
         [OperationContract]
         string get();
-    }
 
+        [OperationContract]
+        string getByName(string model);
+    }
+    //++
     [ServiceContract]
     public interface SProcessor
     {
+        string Processor_Manufacturer
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
-        [OperationContract]
-        void NewProcessor(string manufacturer, string model, string socket, string clock_Freq, string cache);
+        string Processor_Model
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Processor_Socket
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Processor_Clock_Freq
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Processor_Cache
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
         [OperationContract]
         void Save();
 
         [OperationContract]
-        void Update(string manufacturer, string newmodel, string socket, string clock_Freq, string cache, string oldmodel);
+        void Update();
 
         [OperationContract]
         void delete(string model);
@@ -167,20 +362,59 @@ namespace WcfServiceLibrary1
 
         [OperationContract]
         string get();
-    }
 
+        [OperationContract]
+        string getByName(string model);
+    }
+    //++
     [ServiceContract]
     public interface SRam
     {
+        string Ram_Manufacturer
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
-        [OperationContract]
-        void NewRam(string manufacturer, string model, string memory, string clock_Freq, string memory_type);
+        string Ram_Model
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Ram_Memory
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Ram_Clock_Freq
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Ram_Memory_type
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
         [OperationContract]
         void Save();
 
         [OperationContract]
-        void Update(string manufacturer, string newmodel, string socket, string clock_Freq, string cache, string oldmodel);
+        void Update();
 
         [OperationContract]
         void delete(string model);
@@ -190,20 +424,67 @@ namespace WcfServiceLibrary1
 
         [OperationContract]
         string get();
-    }
 
+        [OperationContract]
+        string getByName(string model);
+    }
+    //++
     [ServiceContract]
     public interface SMotherboard
     {
+        string Motherboard_Manufacturer
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
-        [OperationContract]
-        void NewMotherboard(string manufacturer, string model, string socket, string max_clock_Freq, string memory_type, string bios);
+        string Motherboard_Model
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Motherboard_Socket
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Motherboard_Max_clock_freq
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Motherboard_Memory_type
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
+
+        string Motherboard_Bios
+        {
+            [OperationContract]
+            get;
+            [OperationContract]
+            set;
+        }
 
         [OperationContract]
         void Save();
 
         [OperationContract]
-        void Update(string manufacturer, string newmodel, string socket, string max_clock_freq, string memory_type, string bios, string oldmodel);
+        void Update();
 
         [OperationContract]
         void delete(string model);
@@ -213,14 +494,14 @@ namespace WcfServiceLibrary1
 
         [OperationContract]
         string get();
-    }
 
+        [OperationContract]
+        string getByName(string model);
+    }
+    //++
     [ServiceContract]
     public interface SComputer
     {
-
-        [OperationContract]
-        void NewComputer(string name, string videocard, string powersupply, string housing, string harddrive, string diskstorage, string processor, string ram, string motherboard);
 
         [OperationContract]
         void Update(string name);

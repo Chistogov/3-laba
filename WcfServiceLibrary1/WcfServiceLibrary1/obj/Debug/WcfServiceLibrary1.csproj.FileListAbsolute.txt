@@ -1,10 +1,20 @@
-C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Debug\WcfServiceLibrary1.dll.config
-C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Debug\WcfServiceLibrary1.dll
-C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Debug\WcfServiceLibrary1.pdb
 C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\obj\Debug\WcfServiceLibrary1.csprojResolveAssemblyReference.cache
 C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\obj\Debug\WcfServiceLibrary1.dll
 C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\obj\Debug\WcfServiceLibrary1.pdb
-C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Debug\Npgsql.dll
-C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Debug\Mono.Security.dll
-C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\WcfServiceLibrary1.dll.config
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\WcfServiceLibrary1.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\WcfServiceLibrary1.pdb
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Newtonsoft.Json.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Npgsql.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Mono.Security.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба\WcfServiceLibrary1\WcfServiceLibrary1\bin\Newtonsoft.Json.xml
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба +\WcfServiceLibrary1\WcfServiceLibrary1\bin\WcfServiceLibrary1.dll.config
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба +\WcfServiceLibrary1\WcfServiceLibrary1\bin\WcfServiceLibrary1.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба +\WcfServiceLibrary1\WcfServiceLibrary1\bin\WcfServiceLibrary1.pdb
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба +\WcfServiceLibrary1\WcfServiceLibrary1\bin\Newtonsoft.Json.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба +\WcfServiceLibrary1\WcfServiceLibrary1\bin\Npgsql.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба +\WcfServiceLibrary1\WcfServiceLibrary1\bin\Mono.Security.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба +\WcfServiceLibrary1\WcfServiceLibrary1\bin\Newtonsoft.Json.xml
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба +\WcfServiceLibrary1\WcfServiceLibrary1\obj\Debug\WcfServiceLibrary1.csprojResolveAssemblyReference.cache
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба +\WcfServiceLibrary1\WcfServiceLibrary1\obj\Debug\WcfServiceLibrary1.dll
+C:\Users\Максим\Desktop\6 семестр\ТП\3 лаба +\WcfServiceLibrary1\WcfServiceLibrary1\obj\Debug\WcfServiceLibrary1.pdb

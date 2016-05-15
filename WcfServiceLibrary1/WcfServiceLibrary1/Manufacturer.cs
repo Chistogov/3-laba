@@ -2,7 +2,7 @@
 using Npgsql;
 using System;
 using System.ServiceModel;
-
+using System.Text.RegularExpressions;
 
 namespace WcfServiceLibrary1
 {
@@ -13,10 +13,30 @@ namespace WcfServiceLibrary1
         string Name = "";
         string Country = "";
 
-        public void NewManufacturer(string name, string country)
-        {            
-            Name = name;
-            Country = country;
+        public string Manufacturer_Name
+        {
+            get
+            {
+                return Name;
+            }
+
+            set
+            {
+                Name = value;
+            }
+        }
+
+        public string Manufacturer_Country
+        {
+            get
+            {
+                return Country;
+            }
+
+            set
+            {
+                Country = value;
+            }
         }
 
         public void Save()
@@ -45,15 +65,14 @@ namespace WcfServiceLibrary1
             }
         }
 
-        public void Update(string newname, string country, string oldname)
+        public void Update()
         {            
             NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
             NpgsqlCommand command = new NpgsqlCommand();
-            string SQL = "UPDATE public.manufacturer name=@newname, country=@country WHERE name=@oldname;";
+            string SQL = "UPDATE public.manufacturer SET country=@country WHERE name=@name;";
             command.CommandText = SQL;
-            command.Parameters.AddWithValue("@newname", newname);
-            command.Parameters.AddWithValue("@country", country);
-            command.Parameters.AddWithValue("@oldname", oldname);
+            command.Parameters.AddWithValue("@name", Name);
+            command.Parameters.AddWithValue("@country", Country);
             command.Connection = conn;
             NpgsqlDataReader reader = null;
             try
@@ -71,6 +90,53 @@ namespace WcfServiceLibrary1
                 conn.Close();
             }
 
+        }
+
+        public string getByName(string name)
+        {
+            string[,] mas = new string[10, 3];
+            NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
+            NpgsqlCommand command = new NpgsqlCommand();
+            string SQL = "SELECT name, country FROM manufacturer WHERE (is_del=false) and (name = @name);";
+            command.CommandText = SQL;
+            command.Parameters.AddWithValue("@name", name);
+            command.Connection = conn;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                conn.Open();
+                reader = command.ExecuteReader();
+                int i = reader.VisibleFieldCount;
+
+                if (i > 0 && reader.HasRows)
+                {
+                    for (int l = 0; l < i; l++)
+                        mas[l, 0] = reader.GetName(l);
+
+                    int row = 1;
+                    while (reader.Read())
+                    {
+                        for (int cell = 0; cell < i; cell++)
+                        {
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " ");
+                            Name = Regex.Replace(Convert.ToString(reader.GetValue(0)), "[ ]+", " ");
+                            Country = Regex.Replace(Convert.ToString(reader.GetValue(1)), "[ ]+", " ");
+                        }
+                        row++;
+                    }
+                }
+                else throw new Exception("Таких записей не найдено!");
+                reader.Close();
+            }
+            catch (Exception m)
+            {
+                throw new Exception(m.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return JsonConvert.SerializeObject(mas);
         }
 
         public string get()
@@ -96,7 +162,7 @@ namespace WcfServiceLibrary1
                         for (int cell = 0; cell < i; cell++)
                         {
                             //Array.Resize<int>(ref mas, mas.Length + 2);
-                            mas[cell, row] = Convert.ToString(reader.GetValue(cell));
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " ");
                         }                           
                         row++;
                     }

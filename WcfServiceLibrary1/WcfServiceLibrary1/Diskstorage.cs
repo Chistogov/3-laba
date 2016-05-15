@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.ServiceModel;
+using System.Text.RegularExpressions;
 
 namespace WcfServiceLibrary1
 {
@@ -13,11 +14,43 @@ namespace WcfServiceLibrary1
         string Model = "";
         string Type = "";
 
-        public void NewDiskstorage(string manufacturer, string model, string type)
+        public string Diskstorage_Manufacturer
         {
-            Manufacturer = manufacturer;
-            Model = model;
-            Type = type;
+            get
+            {
+                return Manufacturer;
+            }
+
+            set
+            {
+                Manufacturer = value;
+            }
+        }
+
+        public string Diskstorage_Model
+        {
+            get
+            {
+                return Model;
+            }
+
+            set
+            {
+                Model = value;
+            }
+        }
+
+        public string Diskstorage_Type
+        {
+            get
+            {
+                return Type;
+            }
+
+            set
+            {
+                Type = value;
+            }
         }
 
         public void Save()
@@ -52,16 +85,16 @@ namespace WcfServiceLibrary1
             }
         }
 
-        public void Update(string manufacturer, string newmodel, string type, string oldmodel)
+        public void Update()
         {
             NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
             NpgsqlCommand command = new NpgsqlCommand();
-            string SQL = "UPDATE public.diskstorage SET manufacturer = @manufacturer, model = @model, type = @type WHERE model = @oldmodel;";
+            string SQL = "UPDATE public.diskstorage SET manufacturer = @manufacturer, type = @type WHERE model = @model;";
             command.CommandText = SQL;
-            command.Parameters.AddWithValue("@manufacturer", manufacturer);
-            command.Parameters.AddWithValue("@model", newmodel);
-            command.Parameters.AddWithValue("@type", type);
-            command.Parameters.AddWithValue("@oldmodel", oldmodel);
+            string id_manufacturer = GetManufacturerID(Manufacturer);
+            command.Parameters.AddWithValue("@manufacturer", id_manufacturer);
+            command.Parameters.AddWithValue("@model", Model);
+            command.Parameters.AddWithValue("@type", Type);
             command.Connection = conn;
             NpgsqlDataReader reader = null;
             try
@@ -104,7 +137,55 @@ namespace WcfServiceLibrary1
                         for (int cell = 0; cell < i; cell++)
                         {
                             //Array.Resize<int>(ref mas, mas.Length + 2);
-                            mas[cell, row] = Convert.ToString(reader.GetValue(cell));
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " ");
+                        }
+                        row++;
+                    }
+                }
+                else throw new Exception("Таких записей не найдено!");
+                reader.Close();
+            }
+            catch (Exception m)
+            {
+                throw new Exception(m.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return JsonConvert.SerializeObject(mas);
+        }
+
+        public string getByName(string model)
+        {
+            string[,] mas = new string[10, 3];
+            NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;User Id=Admin;Password=Admin;Database=computers;");
+            NpgsqlCommand command = new NpgsqlCommand();
+            string SQL = "SELECT manufacturer.name, diskstorage.model, diskstorage.type FROM manufacturer, diskstorage WHERE (diskstorage.is_del=false) and (diskstorage.manufacturer = manufacturer.id) and (model = @model);";
+            command.CommandText = SQL;
+            command.Parameters.AddWithValue("@model", model);
+            command.Connection = conn;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                conn.Open();
+                reader = command.ExecuteReader();
+                int i = reader.VisibleFieldCount;
+
+                if (i > 0 && reader.HasRows)
+                {
+                    for (int l = 0; l < i; l++)
+                        mas[l, 0] = reader.GetName(l);
+
+                    int row = 1;
+                    while (reader.Read())
+                    {
+                        for (int cell = 0; cell < i; cell++)
+                        {
+                            mas[cell, row] = Regex.Replace(Convert.ToString(reader.GetValue(cell)), "[ ]+", " "); 
+                            Manufacturer = Regex.Replace(Convert.ToString(reader.GetValue(0)), "[ ]+", " "); 
+                            Model = Regex.Replace(Convert.ToString(reader.GetValue(1)), "[ ]+", " ");
+                            Type = Regex.Replace(Convert.ToString(reader.GetValue(2)), "[ ]+", " ");
                         }
                         row++;
                     }
